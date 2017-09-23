@@ -6,6 +6,10 @@ Notes on the MongoDB database.
 
 [Download Community Version](https://www.mongodb.com/download-center#community)
 
+# Terminology
+
+* A **record** in MongoDB is a **document**, which is a data structure composed of **field and value pairs**. MongoDB **documents** are similar to **JSON objects**. 
+
 # Configure MongoDB (Windows)
 
 Note: You must create the following folders begore running this:
@@ -52,17 +56,17 @@ db.createUser( {
 
 `show collectons`
 
-* Insert a record
+* Insert a document
 
 `db.customer.insert ( { first_name: "John", last_name: "Doe" } )`
 
-* Insert multiple records
+* Insert multiple documents
 
 `db.customer.insert ( [{ first_name: "Mark", last_name: "Smith" }, { first_name: "Bill", last_name: "Clinton" }, { first_name: "Joan", last_name: "Jet", gender: "female" } ] )`
 
 Note that you can have varying number of fields in a collection, unlike sql.
 
-* To display the records in a collections
+* To display the document in a collections
 
 ```
 db.customer.find()
@@ -70,7 +74,7 @@ db.customer.find()
 { "_id" : ObjectId("59c5c6c67a1ad007f9143d09"), "first_name" : "John", "last_name" : "Doe" }
 ```
 
-Note that a unique identifier was generated for our inserted record
+Note that a unique identifier was generated for our inserted document
 
 For a nicer format add ".pretty()" to find()
 
@@ -80,7 +84,7 @@ For a nicer format add ".pretty()" to find()
 
 `db.customer.find({ first_name:"Bill" }).pretty()`
 
-* To Update a record (in this case adding a field)
+* To Update a document (in this case adding a field)
 
 * To find a multiple matches
 
@@ -106,11 +110,11 @@ Sorts in ascending order based on last_name.  To do descending use **-1**.
 
 `customer.find().forEach(function(cust){ print("Name: " + cust.last_name + ', ' + cust.first_name) })`
 
-* To get a record count
+* To get a document count
 
 `db.customer.find({ gender:"male"}).count()`
 
-* To Update a record (in this case adding a field)
+* To Update a document (in this case adding a field)
 
 `db.customer.update ( { first_name: "John" }, { first_name: "John", last_name: "Doe", gender: "Male" } )`
 
@@ -124,7 +128,7 @@ To avoid having to reset the existing fields that didn't change in the above, us
 
 `db.customer.update ( { first_name: "Bill" }, { $unset:{gender: "male"} })`
 
-* To update a record if it exists, or add it if it dosn't (called upsert)
+* To update a document if it exists, or add it if it dosn't (called upsert)
 
 `db.customer.update ( { first_name: "Mary" },{ first_name: "Mary", last_name: "Doe" }, {upsert:true} )`
 
@@ -132,7 +136,7 @@ To avoid having to reset the existing fields that didn't change in the above, us
 
 ` db.customer.update ( { first_name: "Bill" }, { $rename:{"gender":"sex"} })`
 
-* To remove a record
+* To remove a document
 
 `db.customer.remove( { first_name: "Mary" })`
 
