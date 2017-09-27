@@ -55,9 +55,13 @@ Note: You must create the following folders begore running this:
 
 `mongo`
 
+## Showing a list of database on the server
+
 * Show the databases
 
 `show dbs`
+
+## Creating and dropping a database
 
 * Create and switch to databases
 
@@ -76,29 +80,39 @@ db.dropDatabase()
 ```
 Drops the test database
 
+## Creating a user in the db
+
 * Create user
 
 ```
 db.createUser( {
-				user: "bob",
-				pwd: "123",
-				roles: [ "readWrite", "dbAdmin" ]
+	user: "bob",
+	pwd: "123",
+	roles: [ "readWrite", "dbAdmin" ]
 });
 ```
 
-* Create Collection (similar to tables in sql)
+## Creating a collection in the current db
+
+* Create collection (similar to tables in sql)
 
 `db.createCollection("customer")`
 
 Note: this explicitly creates the customer collection.  This command is optional in the sense that the collection would have been created anyway when you insert your first document `db.customer.insert(params)`
 
+## Display a list of collections in the current db
+
 * To show the collections
 
 `show collectons`
 
+## Dropping Collections
+
 * To drop a collection
 
 `db.customer.drop()`
+
+## Inserting documents
 
 * Insert a document
 
@@ -109,6 +123,9 @@ Note: this explicitly creates the customer collection.  This command is optional
 `db.customer.insert ( [{ first_name: "Mark", last_name: "Smith" }, { first_name: "Bill", last_name: "Clinton" }, { first_name: "Joan", last_name: "Jet", gender: "female" } ] )`
 
 Note that you can have varying number of fields in a collection, unlike sql.
+
+
+## Finding documents
 
 * To display the document in a collections
 
@@ -144,6 +161,8 @@ For a nicer format add ".pretty()" to find()
 
 Note in this case the key, in addition to the value, needs to be in quotes.
 
+## Misc operations
+
 * To sort
 
 `db.customer.find().sort({last_name:1}).pretty()`
@@ -158,6 +177,8 @@ Sorts in ascending order based on last_name.  To do descending use **-1**.
 
 `db.customer.find({ gender:"male"}).count()`
 
+## Adding a field
+
 * To Update a document (in this case adding a field)
 
 `db.customer.update ( { first_name: "John" }, { first_name: "John", last_name: "Doe", gender: "Male" } )`
@@ -168,6 +189,8 @@ To avoid having to reset the existing fields that didn't change in the above, us
 
 `db.customer.update ( { first_name: "Bill" }, { $set:{gender: "male"} })`
 
+## Removing a field
+
 * To remove a field
 
 `db.customer.update ( { first_name: "Bill" }, { $unset:{gender: "male"} })`
@@ -176,9 +199,13 @@ To avoid having to reset the existing fields that didn't change in the above, us
 
 `db.customer.update ( { first_name: "Mary" },{ first_name: "Mary", last_name: "Doe" }, {upsert:true} )`
 
+## Renaming a field
+
 * To rename a field
 
 ` db.customer.update ( { first_name: "Bill" }, { $rename:{"gender":"sex"} })`
+
+## Removing a document(s)
 
 * To remove a document
 
@@ -188,8 +215,38 @@ To delete just the first match it finds
 
 `db.customer.remove( { first_name: "Mary" }, {justOne:true})`
 
+* To remove all documents from a collection
 
+`db.customer.remove( {} )`
 
+## Adding Array fields or adding to an existing array
 
+* To add or append multiple items to an array
+
+```
+db.notes.update ( 
+	{ title: "GitCommandNotes" }, 
+	{ $push:{ tag: { $each: ["Git", "Git Commands"]} } })
+```
+Adds "Git" and "Git Commands" to the tag array for the GitCommandNotes title.  If the tag array doesn't exist it creates and adds the array
+
+* To add a single item to an array
+
+```
+db.notes.update ( 
+	{ title: "GitCommandNotes" }, 
+	{ $push:{ tag: "GitHub"} })
+```
+Adds "GitHub" to the tag array for the GitCommandNotes title.  If the tag array doesn't exists it creates and adds the array
+
+## Removing an item from an array
+
+* Remove "GitHub" from the tag array
+
+```
+db.notes.update ( 
+	{ title: "GitCommandNotes" }, 
+	{ $pull:{ tag: { $in:["GitHub"]}} })
+```
 
 
