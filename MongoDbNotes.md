@@ -10,21 +10,50 @@ Notes on the MongoDB database.
 
 * A **record** in MongoDB is a **document**, which is a data structure composed of **field and value pairs**. MongoDB **documents** are similar to **JSON objects**. 
 
-# Configure MongoDB (Windows)
+# Installing MongoDb on Ubuntu
+
+* From APT repository
+
+```
+sudo apt install mongodb
+```
+Note: this will also install the mongodb-server, mongodb-client, mongo-tools packages, which can be installed individually instead if that is preferred.
+
+* Getting a more recent version into the APT repository
+
+There may be a more recent version than what is currently available to APT.  You can follow [these](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) instructons on the MongoDb website to get the more recent version to show in your APT.  At the time of this writing they didn't have an option for Ubuntu 17.04, only earlier versions, even though the MongoDB version being offered whas newer than what APT had in Ubuntu 17.04
+
+* Starting/Stopping/Restarting the mongod service
+
+```
+sudo service mongod start
+
+sudo service mongod stop
+
+sudo service mongod restart
+```
+
+# Installing on Windows
+
+* [Download Community Version](https://www.mongodb.com/download-center#community)
+
+* Run the installer
+
+* Configure MongoDB
 
 Note: You must create the following folders begore running this:
 
 `mongod --directoryperdb --dbpath "C:\Users\tracy\Documents\MongoDB\data\db" --logpath "C:\Users\tracy\Documents\MongoDB\log\mongo.log" --logappend --rest --install`
 
-# Start the service (Windows)
+* Start the service (Windows)
 
 `net start MongoDB`
 
-# To run the mongo shell
+# Command Examples within the Mongo shell
+
+* To run the mongo shell
 
 `mongo`
-
-# Command Examples within the Mongo shell
 
 * Show the databases
 
