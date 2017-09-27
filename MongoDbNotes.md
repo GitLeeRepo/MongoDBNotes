@@ -72,7 +72,7 @@ Note: You must create the following folders begore running this:
 ```
 use test;
 
-db.drop()
+db.dropDatabase()
 ```
 Drops the test database
 
