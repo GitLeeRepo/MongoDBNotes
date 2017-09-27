@@ -67,6 +67,15 @@ Note: You must create the following folders begore running this:
 
 `db`
 
+* To drop a database
+
+```
+use test;
+
+db.drop()
+```
+Drops the test database
+
 * Create user
 
 ```
@@ -81,9 +90,15 @@ db.createUser( {
 
 `db.createCollection("customer")`
 
+Note: this explicitly creates the customer collection.  This command is optional in the sense that the collection would have been created anyway when you insert your first document `db.customer.insert(params)`
+
 * To show the collections
 
 `show collectons`
+
+* To drop a collection
+
+`db.customer.drop()`
 
 * Insert a document
 
