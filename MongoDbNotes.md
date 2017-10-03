@@ -207,9 +207,9 @@ For a nicer format add ".pretty()" to find()
 
 * To get a document count
 
-```
-db.customer.find({ gender:"male"}).count()
-```
+  ```
+  db.customer.find({ gender:"male"}).count()
+  ```
 
 ## Adding a field
 
