@@ -9,7 +9,7 @@ Notes on the MongoDB database.
 # Terminology
 
 * A **record** in MongoDB is a **document**, which is a data structure composed of **field and value pairs**. MongoDB **documents** are similar to **JSON objects**. 
-# Installing MongoDb on Ubuntu
+# Installing MongoDB on Ubuntu
 
 * From APT repository
 
@@ -20,9 +20,9 @@ Notes on the MongoDB database.
 
 * Getting a more recent version into the APT repository
 
-  There may be a more recent version than what is currently available to APT.  You can follow [these](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) instructons on the MongoDb website to get the more recent version to show in your APT.  At the time of this writing they didn't have an option for Ubuntu 17.04, only earlier versions, even though the MongoDB version being offered whas newer than what APT had in Ubuntu 17.04
+  There may be a more recent version than what is currently available to APT.  You can follow [these](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) instructions on the MongoDB website to get the more recent version to show in your APT.  At the time of this writing they didn't have an option for Ubuntu 17.04, only earlier versions, even though the MongoDB version being offered was newer than what APT had in Ubuntu 17.04
 
-* Starting/Stopping/Restarting the mongod service
+* Starting/Stopping/Restarting the MongoDB service
 
   ```
   sudo service mongod start
@@ -38,7 +38,7 @@ Notes on the MongoDB database.
 * Run the installer
 * Configure MongoDB
 
-  Note: You must create the following folders begore running this:
+  Note: You must create the following folders before running this:
 
   ```
   mongod --directoryperdb --dbpath "C:\Users\tracy\Documents\MongoDB\data\db" --logpath "C:\Users\tracy\Documents\MongoDB\log\mongo.log" --logappend --rest --install
@@ -103,7 +103,7 @@ Notes on the MongoDB database.
 
 ## Creating a collection in the current db
 
-* Create collection (similar to tables in sql)
+* Create collection (similar to tables in SQL)
 
   ```
   db.createCollection("customer")
@@ -141,7 +141,7 @@ Notes on the MongoDB database.
   db.customer.insert ( [{ first_name: "Mark", last_name: "Smith" }, { first_name: "Bill", last_name: "Clinton" }, { first_name: "Joan", last_name: "Jet", gender: "female" } ] )
   ```
 
-  Note that you can have varying number of fields in a collection, unlike sql.
+  Note that you can have varying number of fields in a collection, unlike SQL.
 
 
 ## Finding documents
@@ -175,7 +175,7 @@ For a nicer format add ".pretty()" to find()
   db.customer.find({ $or:[{first_name:"Bill"}, {first_name:"Cindy"}] }).pretty()
   ```
 
-* To find base on conditon
+* To find base on condition
 
   ```
   db.customer.find({ age:{$lt:40} }).pretty()
@@ -235,7 +235,7 @@ For a nicer format add ".pretty()" to find()
   db.customer.update ( { first_name: "Bill" }, { $unset:{gender: "male"} })
   ```
 
-* To update a document if it exists, or add it if it dosn't (called upsert)
+* To update a document if it exists, or add it if it doesn't (called upsert)
 
   ```
   db.customer.update ( { first_name: "Mary" },{ first_name: "Mary", last_name: "Doe" }, {upsert:true} )
