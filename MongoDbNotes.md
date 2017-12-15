@@ -116,7 +116,7 @@ Notes on the MongoDB database.
 * To show the collections
 
   ```
-  show collectons
+  show collections
   ```
 
 ## Dropping Collections
