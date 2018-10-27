@@ -298,3 +298,48 @@ For a nicer format add ".pretty()" to find()
     { title: "GitCommandNotes" }, 
     { $pull:{ tag: { $in:["GitHub"]}} })
   ```
+
+# Importing and Exporting Data
+
+## Importing JSON File
+
+### Importing Single JSON Object (not an array)
+
+When **importing a JSON file** that is **not** in an **array**, i.e., the file doesn't **start and end with \[ an \]**:
+
+```bash
+$ mongoimport --db repos --collection github_users --file gituserinfo.json
+```
+
+Note: this is from the **bash commandline** **not** the **mongo shell**.
+
+### Importing JSON Array of Objects 
+
+When **importing a JSON file** that is an **array**, i.e., the file **starts and end with \[ an \]** you have to **modify the file** adding **'{"myObjName":`** before the **opening **\[** and adding a closing **curly brace** at the **end** following the **closing \]**.  For example,
+
+```
+{"myData":
+[
+  {
+    "name":"John",
+    "age":31,
+  },
+  {
+    "name":"Bill",
+    "age":41,
+  },
+  {
+    "name":"Ted",
+    "age":33,
+  }
+]
+}
+```
+
+And then **import** as before
+
+```bash
+$ mongoimport --db people --collection users_list --file users.json
+```
+
+Note: this is from the **bash commandline** **not** the **mongo shell**.
