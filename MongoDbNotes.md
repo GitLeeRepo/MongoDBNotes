@@ -72,19 +72,45 @@ net start MongoDB
 
 # Command Examples within the Mongo shell
 
-* To run the mongo shell
+## Start the shell
+
+To **run the mongo shell**:
 
 ```
 mongo
 ```
 
+Or specify a **specific database** to **start with**:
+
+```
+mongo mydb
+```
+
+## Getting Help
+
+To see what **commands** are available:
+
+```mongo
+
+```
+
 ## Showing a list of database on the server
 
-* Show the databases
+**Show the databases**:
 
 ```
 show dbs
 ```
+
+## To see what database your are currently in
+
+Simply enter **db**
+
+```mongo
+db
+```
+
+Note that the **initial database** you will be in is the **test database**.
 
 ## Creating and dropping a database
 
@@ -417,6 +443,18 @@ show collections
 mongo < test.shell
 ```
 
+### Running a JavaScript from the Commandline
+
+```bash
+mongo mydb myscript.js
+```
+
+To **run a script** and then **launch the shell**:
+
+```bash
+mongo mydb myscript.js --shell
+```
+
 ### Running a Script using eval
 
 Here the database **people** is included on the commandline and **eval** uses the **printjson(db.getCollectionNames())** function to display the collections in a **JSON** format.
@@ -428,3 +466,27 @@ mongo people -eval "printjson(db.getCollectionNames())"
 ```bash
 mongo --eval "printjson(db.serverStatus())"
 ```
+
+# Administrative Tasks
+
+## Logs
+
+### Log Rotation
+
+By **default** Mongo will **keep appending to the log**.  It is a good ideas to **periodically rotate the log**.
+
+```mongo
+mongo repos --eval "db.runCommand({logRotate:1})"
+```
+
+# Docker Specific Administrative Tasks
+
+## Logs
+
+### Viewing the Log
+
+```bash
+docker logs mongo01
+```
+
+
