@@ -166,9 +166,9 @@ db.customer.insert ( [{ first_name: "Mark", last_name: "Smith" }, { first_name: 
 Note that you can have **varying number of fields** in a collection, unlike SQL.
 
 
-## Updating a field
+## Updating a Document
 
-* To Update a document (in this case adding a field)
+* To **update a document** (in this case adding a field)
 
 ```
 db.customer.update ( { first_name: "John" }, { first_name: "John", last_name: "Doe", gender: "Male" } )
@@ -182,7 +182,17 @@ To **avoid having to reset the existing fields** that didn't change in the above
 db.customer.update ( { first_name: "Bill" }, { $set:{gender: "male"} })
 ```
 
-## Removing a field
+### Using \$inc Operator with Update
+
+You can **increment numberic values** in an **update** using the **$inc** operator
+
+```
+db.customer.update ( { first_name: "Bill" }, { $inc:{age: 2} })
+```
+
+**increments** the current **age** field by **2**.
+
+### Removing a field in an **update** with the **\$unset** Operator
 
 * To remove a field
 
@@ -190,13 +200,15 @@ db.customer.update ( { first_name: "Bill" }, { $set:{gender: "male"} })
 db.customer.update ( { first_name: "Bill" }, { $unset:{gender: "male"} })
 ```
 
-* To update a document if it exists, or add it if it doesn't (called upsert)
+### Upserting a Document
+
+To **update a document if it exists**, or **insert it if it doesn't exist** is called **upsert**.  If you don't specifcy the **`{upsert:true}`** it will only update it if it exists, and won't insert if it doesn't.
 
 ```
 db.customer.update ( { first_name: "Mary" },{ first_name: "Mary", last_name: "Doe" }, {upsert:true} )
 ```
 
-## Renaming a field
+### Renaming a field in an **update** with the **\$rename** Operator
 
 * To rename a field
 
@@ -216,19 +228,19 @@ db.customer.find()
 
 Note that a **unique identifier** was **automatically generated** for our **inserted document**
 
-For a nicer format add ".pretty()" to find()
+For a nicer format add **.pretty()** to **find()**
 
 ```
 db.customer.find().pretty()
 ```
 
-### Find and Display a Speciic Document in a Collections
+### Find and Display a Specific Document in a Collections
 
 ```
 db.customer.find({ first_name:"Bill" }).pretty()
 ```
 
-* To find a multiple matches
+### Find and Display Mutiple Documents using the **`#or`** Operator
 
 ```
 db.customer.find({ $or:[{first_name:"Bill"}, {first_name:"Cindy"}] }).pretty()
@@ -236,33 +248,37 @@ db.customer.find({ $or:[{first_name:"Bill"}, {first_name:"Cindy"}] }).pretty()
 
 ### Finding Based on a Condition
 
+Find those documents with an **age < 40**
+
 ```
 db.customer.find({ age:{$lt:40} }).pretty()
 ```
 
-* To **find** based on a **nested value**:
+### Finding a Nested Value
+
+To **find** based on a **nested value** (in this case **city** which is **nested** in the **address** object):
 
 ```
 db.customer.find({ "address.city":"Boston" }).pretty()
 ```
 
-Note in this case the key, in addition to the value, needs to be in quotes.
+Note when a **nested** value such as the **address.city** combination the **key**, in addition to the value, **needs to be in quotes**.
 
 ## Removing a document(s)
 
-* To remove a document
+### To remove all Document that Match the Specified Value
 
 ```
 db.customer.remove( { first_name: "Mary" })
 ```
 
-To delete just the first match it finds
+### To delete just the first match it finds
 
 ```
 db.customer.remove( { first_name: "Mary" }, {justOne:true})
 ```
 
-* To remove all documents from a collection
+### To remove all documents from a collection
 
 ```
 db.customer.remove({})
@@ -270,7 +286,7 @@ db.customer.remove({})
 
 ## Adding Array fields or adding to an existing array
 
-* To add or append multiple items to an array
+### To add or append multiple items to an array
 
 ```
 db.notes.update ( 
@@ -279,7 +295,7 @@ db.notes.update (
 ```
 Adds "Git" and "Git Commands" to the tag array for the GitCommandNotes title.  If the tag array doesn't exist it creates and adds the array
 
-* To add a single item to an array
+### To add a single item to an array
 
 ```
 db.notes.update ( 
@@ -290,7 +306,7 @@ Adds "GitHub" to the tag array for the GitCommandNotes title.  If the tag array 
 
 ## Removing an item from an array
 
-* Remove "GitHub" from the tag array
+Remove "GitHub" from the tag array
 
 ```
 db.notes.update ( 
@@ -306,7 +322,7 @@ db.notes.update (
 db.customer.find().sort({last_name:1}).pretty()
 ```
 
-Sorts in ascending order based on last_name.  To do descending use **-1**.
+Because of the **1** this **sorts in ascending order** based on **last_name**.  To **sort indescending order** use **-1**.
 
 ### forEach loop
 
@@ -314,7 +330,7 @@ Sorts in ascending order based on last_name.  To do descending use **-1**.
 customer.find().forEach(function(cust){ print("Name: " + cust.last_name + ', ' + cust.first_name) })
 ```
 
-* To get a document count
+### To get a document count
 
 ```
 db.customer.find({ gender:"male"}).count()
