@@ -307,8 +307,17 @@ For a nicer format add ".pretty()" to find()
 
 When **importing a JSON file** that is **not** in an **array**, i.e., the file doesn't **start and end with \[ an \]**:
 
+Example **user.json** file:
+
+```
+{
+  "name":"John",
+  "age":31,
+}
+```
+
 ```bash
-$ mongoimport --db repos --collection github_users --file gituserinfo.json
+$ mongoimport --db users --collection user_lead --file user.json
 ```
 
 Note: this is from the **bash commandline** **not** the **mongo shell**.
@@ -339,7 +348,7 @@ Example **users.json** file:
 **Import** including the **`--jsonArray`** flag:
 
 ```bash
-$ mongoimport --db repos --collection github_repos --jsonArray --file repos.json
+$ mongoimport --db people --collection user_list --jsonArray --file users.json
 ```
 
 Note: this is from the **bash commandline** **not** the **mongo shell**.
