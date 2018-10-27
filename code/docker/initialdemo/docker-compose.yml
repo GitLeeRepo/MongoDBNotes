@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+
+  mongo:
+    image: mongo:xenial
+    hostname: aub3mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo-data/configdb:/data/configdb
+      - ./mongo-data/db:/data/db
+      - ./json:/home/json
+      - ./scripts:/home/scripts
+    working_dir: /home
+
