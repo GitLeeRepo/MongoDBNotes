@@ -4,7 +4,14 @@ Notes on the MongoDB database.
 
 # References
 
-[Download Community Version](https://www.mongodb.com/download-center#community)
+* [Download Community Version](https://www.mongodb.com/download-center#community)
+
+## Mongo Scripts
+
+* [mongo shell scripts](https://docs.mongodb.com/manual/tutorial/write-scripts-for-the-mongo-shell/)
+
+## My Other Notes
+
 
 # Terminology
 
@@ -354,3 +361,40 @@ $ mongoimport --db people --collection user_list --jsonArray --file users.json
 Note: this is from the **bash commandline** **not** the **mongo shell**.
 
 An **alternative** to using **`--jsonArray`** flag is to **add** **'{"myObjName":`** before the **opening **\[** and adding a closing **curly brace** at the **end** following the **closing \]**. 
+
+# Mongo Scripts (JavaScript)
+
+Refer to:
+
+* [mongo shell scripts](https://docs.mongodb.com/manual/tutorial/write-scripts-for-the-mongo-shell/)
+
+You can write **scripts** for the **mongo shell** using **JavaScript**
+
+## Running Scripts from the Command Line
+
+### Running a Command Script in a File
+
+**Simple test.shell script**:
+
+```mongo
+use people
+show collections
+```
+
+**Run script**:
+
+```bash
+mongo < test.shell
+```
+
+### Running a Script using eval
+
+Here the database **people** is included on the commandline and **eval** uses the **printjson(db.getCollectionNames())** function to display the collections in a **JSON** format.
+
+```bash
+mongo people -eval "printjson(db.getCollectionNames())"
+```
+
+```bash
+mongo --eval "printjson(db.serverStatus())"
+```
