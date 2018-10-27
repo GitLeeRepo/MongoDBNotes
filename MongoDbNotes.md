@@ -6,6 +6,10 @@ Notes on the MongoDB database.
 
 * [Download Community Version](https://www.mongodb.com/download-center#community)
 
+## Mongo Docs
+
+* [docs.mongodb.com](https://docs.mongodb.com/)
+
 ## Mongo Scripts
 
 * [mongo shell scripts](https://docs.mongodb.com/manual/tutorial/write-scripts-for-the-mongo-shell/)
@@ -92,7 +96,7 @@ Or specify a **specific database** and **JavaScrpt** to run, followed by taking 
 mongo mydb myscript.js --shell
 ```
 
-## Shell Features and Keystrokes
+## Shell Features, Common Functions and Keystrokes
 
 * The **shell** allows you to **enter multiline Javascript** where it recoginizes **opening braces** to enable **line continuation**, for example:
 
@@ -130,6 +134,21 @@ On **Linux**:
 export EDITOR="vim"
 ```
 
+### Common Functions
+
+#### load()
+
+To **load a JavaScript**
+
+```mongo
+> load("scriptName.js")
+```
+
+#### pwd()
+
+```mongo
+> pwd()
+```
 
 ## Getting Help
 
