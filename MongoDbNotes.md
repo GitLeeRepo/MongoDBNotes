@@ -315,10 +315,11 @@ Note: this is from the **bash commandline** **not** the **mongo shell**.
 
 ### Importing JSON Array of Objects 
 
-When **importing a JSON file** that is an **array**, i.e., the file **starts and end with \[ an \]** you have to **modify the file** adding **'{"myObjName":`** before the **opening **\[** and adding a closing **curly brace** at the **end** following the **closing \]**.  For example,
+When **importing a JSON file** that is an **array**, i.e., the file **starts and end with \[ an \]** you need to include the **`--jsonArray`** flag. 
+
+Example **users.json** file:
 
 ```
-{"myData":
 [
   {
     "name":"John",
@@ -333,13 +334,14 @@ When **importing a JSON file** that is an **array**, i.e., the file **starts and
     "age":33,
   }
 ]
-}
 ```
 
-And then **import** as before
+**Import** including the **`--jsonArray`** flag:
 
 ```bash
-$ mongoimport --db people --collection users_list --file users.json
+$ mongoimport --db repos --collection github_repos --jsonArray --file repos.json
 ```
 
 Note: this is from the **bash commandline** **not** the **mongo shell**.
+
+An **alternative** to using **`--jsonArray`** flag is to **add** **'{"myObjName":`** before the **opening **\[** and adding a closing **curly brace** at the **end** following the **closing \]**. 
