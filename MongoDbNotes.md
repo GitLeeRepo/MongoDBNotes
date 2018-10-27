@@ -10,7 +10,15 @@ Notes on the MongoDB database.
 
 * [mongo shell scripts](https://docs.mongodb.com/manual/tutorial/write-scripts-for-the-mongo-shell/)
 
+## YouTube Videos
+
+* [MongoDb in 30 minutes](https://www.youtube.com/watch?v=pWbMrx5rVBE) -- Brad Traversy
+
 ## My Other Notes
+
+* [DockerNotes](https://github.com/GitLeeRepo/DockerNotes/blob/master/DockerNotes.md#overview)
+* [MySQLGeneralNotes](https://github.com/GitLeeRepo/MySQLNotes/blob/master/MySQLGeneralNotes.md#overview)
+* [UbuntuNotes](https://github.com/GitLeeRepo/UbuntuNotes/blob/master/UbuntuNotes.md#overview)
 
 
 # Terminology
