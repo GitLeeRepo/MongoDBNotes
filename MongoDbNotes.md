@@ -86,13 +86,55 @@ Or specify a **specific database** to **start with**:
 mongo mydb
 ```
 
+Or specify a **specific database** and **JavaScrpt** to run, followed by taking you **into the shell**:
+
+```
+mongo mydb myscript.js --shell
+```
+
+## Shell Features and Keystrokes
+
+* The **shell** allows you to **enter multiline Javascript** where it recoginizes **opening braces** to enable **line continuation**, for example:
+
+```js
+> var stuff = function(name) {
+... var doc = {
+... Name:name,
+... Created: Date(),
+... Type: 'r'};
+... db.foo.save(doc);
+... }
+> stuff("tester");
+
+# Displaying the new document 'foo'
+> db.foo.find().pretty()
+{
+        "_id" : ObjectId("5bd4e4ea5740883b1eac047c"),
+        "Name" : "tester",
+        "Created" : "Sat Oct 27 2018 22:21:30 GMT+0000 (UTC)",
+        "Type" : "r"
+}
+```
+
+* If you need to **edit** the prior script:
+
+```mongo
+edit stuff
+```
+
+Note you my define the **EDITOR environment variable** for this to work:
+
+On **Linux**:
+
+```bash
+export EDITOR="vim"
+```
+
+
 ## Getting Help
 
 To see what **commands** are available:
 
-```mongo
-
-```
 
 ## Showing a list of database on the server
 
@@ -475,8 +517,19 @@ mongo --eval "printjson(db.serverStatus())"
 
 By **default** Mongo will **keep appending to the log**.  It is a good ideas to **periodically rotate the log**.
 
+Note this must be run on the **admin database**
 ```mongo
-mongo repos --eval "db.runCommand({logRotate:1})"
+$ mongo localhost/admin --eval "db.runCommand({logRotate:1})"
+
+MongoDB shell version v4.0.3
+connecting to: mongodb://localhost:27017/admin
+Implicit session: session { "id" : UUID("17d35b7d-757e-4ef0-8246-939ab15c03f2") }
+MongoDB server version: 4.0.3
+{ "ok" : 1 }
+
+# OR
+$ mongo localhost/admin --eval "printjson(db.runCommand({logRotate:1}))"
+# In this case the same output as above
 ```
 
 # Docker Specific Administrative Tasks
@@ -489,4 +542,8 @@ mongo repos --eval "db.runCommand({logRotate:1})"
 docker logs mongo01
 ```
 
+If you instead want to **write the logs somewhere else** then run the following (note: I haven't veified this):
 
+```bash
+$ docker run ... mongo --logpath /somewhere/specific.log
+```
