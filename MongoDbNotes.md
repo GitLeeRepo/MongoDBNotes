@@ -343,6 +343,8 @@ db.customer.find({ age:{$lt:40} }).pretty()
 
 ### Finding Based on Condition, Displaying a Single Field Only
 
+In the following example, the source data has around 100 or so fields per document, so it can be helpful to **display a subset of the fields** in this case the **name** field. Note that **`_id:0`** is set to zero, since even when you select only a **single field** it will also display the **`_id`** unless you specifically exclude it.
+
 ```
 > db.github_repos.find({updated_at:{"$gte":"2018-10-22T19:37:23Z"}},{_id:0,name:1}).pretty()
 { "name" : "DockerNotes" }
@@ -353,7 +355,6 @@ db.customer.find({ age:{$lt:40} }).pretty()
 { "name" : "VSCodeNotes" 
 ```
 
-Note that **`_id:0`** is set to zero, since even when you select only a **single field** it will also display the **`_id`** unless you specifically exclude it.
 
 ### Finding a Nested Value
 
