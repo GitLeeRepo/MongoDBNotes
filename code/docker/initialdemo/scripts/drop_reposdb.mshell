@@ -1,0 +1,2 @@
+use repos
+db.dropDatabase()
