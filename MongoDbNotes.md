@@ -341,6 +341,20 @@ Find those documents with an **age < 40**
 db.customer.find({ age:{$lt:40} }).pretty()
 ```
 
+### Finding Based on Condition, Displaying a Single Field Only
+
+```
+> db.github_repos.find({updated_at:{"$gte":"2018-10-22T19:37:23Z"}},{_id:0,name:1}).pretty()
+{ "name" : "DockerNotes" }
+{ "name" : "ExpressJsMongoDemo01" }
+{ "name" : "IdeasToDosQuestions" }
+{ "name" : "NodeExpresssSandbox" }
+{ "name" : "NodejsNotes" }
+{ "name" : "VSCodeNotes" 
+```
+
+Note that **`_id:0`** is set to zero, since even when you select only a **single field** it will also display the **`_id`** unless you specifically exclude it.
+
 ### Finding a Nested Value
 
 To **find** based on a **nested value** (in this case **city** which is **nested** in the **address** object):
