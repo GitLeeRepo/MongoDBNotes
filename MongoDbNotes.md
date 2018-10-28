@@ -422,7 +422,13 @@ customer.find().forEach(function(cust){ print("Name: " + cust.last_name + ', ' +
 ```
 db.customer.find({ gender:"male"}).count()
 ```
-  
+
+### To get a document count resulting from a conditional query
+
+```
+db.github_repos.find({size:{$lt:400}}).count()
+```
+
 # Importing and Exporting Data
 
 ## Importing JSON File
