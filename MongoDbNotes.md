@@ -31,7 +31,7 @@ Notes on the MongoDB database.
 
 * **Collection** -- similar in concept to a **table** in a **relational database**.  They hold a **collection of documents**, which very loosely can be thought of as a **record** in a **table**.
 * A **record** in MongoDB is a **document**, which is a data structure composed of **field and value pairs**. MongoDB **documents** are similar to **JSON objects**. 
-* **NoSQL database** -- a **NoSQL** database contrasts with a **relational database** in which you have to deal **schemas, tables, columns, datatypes, etc.**.  In contrast a **NoSQL** database frees you from having to map all this stuff out in advance.  It is more **agile**.  They are also much easier to **scale** than **SQL** databases.
+* **NoSQL database** -- a **NoSQL** database contrasts with a **relational database** in which you have to deal **schemas, tables, columns, data types, etc.**.  In contrast a **NoSQL** database frees you from having to map all this stuff out in advance.  It is more **agile**.  They are also much easier to **scale** than **SQL** databases.
 
 # Installing MongoDB on Ubuntu
 
@@ -90,7 +90,7 @@ Or specify a **specific database** to **start with**:
 mongo mydb
 ```
 
-Or specify a **specific database** and **JavaScrpt** to run, followed by taking you **into the shell**:
+Or specify a **specific database** and **JavaScript** to run, followed by taking you **into the shell**:
 
 ```
 mongo mydb myscript.js --shell
@@ -98,7 +98,7 @@ mongo mydb myscript.js --shell
 
 ## Shell Features, Common Functions and Keystrokes
 
-* The **shell** allows you to **enter multiline Javascript** where it recoginizes **opening braces** to enable **line continuation**, for example:
+* The **shell** allows you to **enter multi line Javascript** where it recognizes **opening braces** to enable **line continuation**, for example:
 
 ```js
 > var stuff = function(name) {
@@ -271,7 +271,7 @@ db.customer.update ( { first_name: "Bill" }, { $set:{gender: "male"} })
 
 ### Using \$inc Operator with Update
 
-You can **increment numberic values** in an **update** using the **$inc** operator
+You can **increment numeric values** in an **update** using the **$inc** operator
 
 ```
 db.customer.update ( { first_name: "Bill" }, { $inc:{age: 2} })
@@ -289,7 +289,7 @@ db.customer.update ( { first_name: "Bill" }, { $unset:{gender: "male"} })
 
 ### Upserting a Document
 
-To **update a document if it exists**, or **insert it if it doesn't exist** is called **upsert**.  If you don't specifcy the **`{upsert:true}`** it will only update it if it exists, and won't insert if it doesn't.
+To **update a document if it exists**, or **insert it if it doesn't exist** is called **upsert**.  If you don't specify the **`{upsert:true}`** it will only update it if it exists, and won't insert if it doesn't.
 
 ```
 db.customer.update ( { first_name: "Mary" },{ first_name: "Mary", last_name: "Doe" }, {upsert:true} )
@@ -327,7 +327,7 @@ db.customer.find().pretty()
 db.customer.find({ first_name:"Bill" }).pretty()
 ```
 
-### Find and Display Mutiple Documents using the **`#or`** Operator
+### Find and Display Multiple Documents using the **`#or`** Operator
 
 ```
 db.customer.find({ $or:[{first_name:"Bill"}, {first_name:"Cindy"}] }).pretty()
@@ -350,7 +350,7 @@ In the following example, the source data has close 100 fields per document, so 
 { "name" : "DockerNotes" }
 { "name" : "ExpressJsMongoDemo01" }
 { "name" : "IdeasToDosQuestions" }
-{ "name" : "NodeExpresssSandbox" }
+{ "name" : "NodeExpressSandbox" }
 { "name" : "NodejsNotes" }
 { "name" : "VSCodeNotes" }
 ```
@@ -424,7 +424,7 @@ db.notes.update (
 db.customer.find().sort({last_name:1}).pretty()
 ```
 
-Because of the **1** this **sorts in ascending order** based on **last_name**.  To **sort indescending order** use **-1**.
+Because of the **1** this **sorts in ascending order** based on **last_name**.  To **sort in descending order** use **-1**.
 
 ### forEach loop
 
@@ -465,7 +465,7 @@ Example **user.json** file:
 $ mongoimport --db users --collection user_lead --file user.json
 ```
 
-Note: this is from the **bash commandline** **not** the **mongo shell**.
+Note: this is from the **bash command line** **not** the **mongo shell**.
 
 ### Importing JSON Array of Objects 
 
@@ -496,7 +496,7 @@ Example **users.json** file:
 $ mongoimport --db people --collection user_list --jsonArray --file users.json
 ```
 
-Note: this is from the **bash commandline** **not** the **mongo shell**.
+Note: this is from the **bash command line** **not** the **mongo shell**.
 
 An **alternative** to using **`--jsonArray`** flag is to **add** **'{"myObjName":`** before the **opening **\[** and adding a closing **curly brace** at the **end** following the **closing \]**. 
 
@@ -525,7 +525,7 @@ show collections
 mongo < test.shell
 ```
 
-### Running a JavaScript from the Commandline
+### Running a JavaScript from the Command line
 
 ```bash
 mongo mydb myscript.js
@@ -539,7 +539,7 @@ mongo mydb myscript.js --shell
 
 ### Running a Script using eval
 
-Here the database **people** is included on the commandline and **eval** uses the **printjson(db.getCollectionNames())** function to display the collections in a **JSON** format.
+Here the database **people** is included on the command line and **eval** uses the **printjson(db.getCollectionNames())** function to display the collections in a **JSON** format.
 
 ```bash
 mongo people -eval "printjson(db.getCollectionNames())"
@@ -557,7 +557,7 @@ The **mongorc.js** in your **home directory**, on **Linux** it is a hidden **~/.
 
 The **global mongorc.js** can be found in **/etc/mongorc.js** on **Linux**.  It will apply to all user logins.
 
-Using a **Docker container** based on one of the **official** images it is found in **/root/.mongon.js** since **root** is the default unless you specifically provide a **uid** to use on the **docker run** commandline or in the **Dockerfile** or **docker-compose.yml**.
+Using a **Docker container** based on one of the **official** images it is found in **/root/.mongorc.js** since **root** is the default unless you specifically provide a **uid** to use on the **docker run**   or in the **Dockerfile** or **docker-compose.yml**.
 
 # Administrative Tasks
 
@@ -592,7 +592,7 @@ $ mongo localhost/admin --eval "printjson(db.runCommand({logRotate:1}))"
 docker logs mongo01
 ```
 
-If you instead want to **write the logs somewhere else** then run the following (note: I haven't veified this):
+If you instead want to **write the logs somewhere else** then run the following (note: I haven't verified this):
 
 ```bash
 $ docker run ... mongo --logpath /somewhere/specific.log
