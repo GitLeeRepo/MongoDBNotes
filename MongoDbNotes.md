@@ -551,11 +551,13 @@ mongo --eval "printjson(db.serverStatus())"
 
 ## mongorc.js -- a JavaScript that runs each time Mongo is started
 
-The **mongorc.js** in your **home directory**, in **Linux** it is a hiddent **~/.mongorc.js** file.  It already existed for me, but was empty. On **Windows** it is in **`c:\\Users\\username\.mongo.js`** with the **drive letter** being based on whatever the **HOMEDRIVE** is set to.  On both **Linux** and **Windows** the **HOME environment variable** refers to the home directory itself.
+You can use the **mongorc.js** JavaScript file to run a script every time you run **mongo**.
 
-The **global mongorc.js** can be found in **/etc/mongorc.js** on **Linux**.
+The **mongorc.js** in your **home directory**, on **Linux** it is a hidden **~/.mongorc.js** file.  It already existed for me, but was empty. On **Windows** it is in **`c:\\Users\\username\.mongo.js`** with the **drive letter** being based on whatever the **HOMEDRIVE environment variable** is set to.  On both **Linux** and **Windows** the **HOME environment variable** refers to the home directory itself.
 
-On the **Official Docker** image it is found in **/root/.mongon.js** since that is the default.
+The **global mongorc.js** can be found in **/etc/mongorc.js** on **Linux**.  It will apply to all user logins.
+
+Using a **Docker container** based on one of the **official** images it is found in **/root/.mongon.js** since **root** is the default unless you specifically provide a **uid** to use on the **docker run** commandline or in the **Dockerfile** or **docker-compose.yml**.
 
 # Administrative Tasks
 
