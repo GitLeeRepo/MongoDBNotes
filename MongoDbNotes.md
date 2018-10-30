@@ -27,8 +27,12 @@ Notes on the MongoDB database.
 
 # Concepts and Terminology
 
-**Mongo** is considered a **NoSQL database**, more specifically it is a **Document Database**.  The **documents** are stored in a **JSON like syntax**.
+**Mongo** is considered a **NoSQL database**, more specifically it is a **Document Database**.
 
+## Terminology
+
+* **\_id** -- **every Mongo document must have an \_id field**.  If you don't provide one it will be **automatically generated** for you.  It **must be unique**.  The **underscrore must be specified** when assigning your own **\_ids**.
+* **BSON** -- (**Binary JSON**) is **binary encoded serialion of JSON like documents**.  the **data format** used by **Mongo**. The **BSON Specificiaton** can be found at [bsonspec.org](http://bsonspec.org/).  This is the **storage format** that **Mongo** uses to **serialize data to disk**.
 * **Collection** -- similar in concept to a **table** in a **relational database**.  They hold a **collection of documents**, which very loosely can be thought of as a **record** in a **table**.
 * A **record** in MongoDB is a **document**, which is a data structure composed of **field and value pairs**. MongoDB **documents** are similar to **JSON objects**. 
 * **NoSQL database** -- a **NoSQL** database contrasts with a **relational database** in which you have to deal **schemas, tables, columns, data types, etc.**.  In contrast a **NoSQL** database frees you from having to map all this stuff out in advance.  It is more **agile**.  They are also much easier to **scale** than **SQL** databases.
