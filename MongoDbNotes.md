@@ -559,6 +559,14 @@ The **global mongorc.js** can be found in **/etc/mongorc.js** on **Linux**.  It 
 
 Using a **Docker container** based on one of the **official** images it is found in **/root/.mongorc.js** since **root** is the default unless you specifically provide a **uid** to use on the **docker run**   or in the **Dockerfile** or **docker-compose.yml**.
 
+### Preventing mongorc.js from running
+
+To **prevent mongorc.js from running** use the **`-norc`** command line flag:
+
+```bash
+mongo mydb -norc
+```
+
 # Administrative Tasks
 
 ## Logs
