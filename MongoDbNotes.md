@@ -31,11 +31,12 @@ Notes on the MongoDB database.
 
 ## Terminology
 
-* **\_id** -- **every Mongo document must have an \_id field**.  If you don't provide one it will be **automatically generated** for you.  It **must be unique**.  The **underscrore must be specified** when assigning your own **\_ids**.
-* **BSON** -- (**Binary JSON**) is **binary encoded serialion of JSON like documents**.  the **data format** used by **Mongo**. The **BSON Specificiaton** can be found at [bsonspec.org](http://bsonspec.org/).  This is the **storage format** that **Mongo** uses to **serialize data to disk**.
+* **\_id** -- **every Mongo document must have an \_id field**.  If you don't provide one it will be **automatically generated** for you.  It **must be unique**.  The **underscore must be specified** when assigning your own **\_ids**.  This is the only **schema rule** that exists for Mongo.  The **\_id** field can be **any type except an array**.
+* **BSON** -- (**Binary JSON**) is **binary encoded serialization of JSON like documents**.  the **data format** used by **Mongo**. The **BSON Specification** can be found at [bsonspec.org](http://bsonspec.org/).  This is the **storage format** that **Mongo** uses to **serialize data to disk**.
 * **Collection** -- similar in concept to a **table** in a **relational database**.  They hold a **collection of documents**, which very loosely can be thought of as a **record** in a **table**.
 * A **record** in MongoDB is a **document**, which is a data structure composed of **field and value pairs**. MongoDB **documents** are similar to **JSON objects**. 
 * **NoSQL database** -- a **NoSQL** database contrasts with a **relational database** in which you have to deal **schemas, tables, columns, data types, etc.**.  In contrast a **NoSQL** database frees you from having to map all this stuff out in advance.  It is more **agile**.  They are also much easier to **scale** than **SQL** databases.
+* **Schema restrictions** -- Mongo is for the most part a **schemaless** database.  The only **schema rule** it has is that **every document must have an \_id field**.
 
 # Installing MongoDB on Ubuntu
 
@@ -158,6 +159,7 @@ To **load a JavaScript**
 
 To see what **commands** are available:
 
+# Mongo Databases
 
 ## Showing a list of database on the server
 
@@ -200,6 +202,7 @@ db.dropDatabase()
 ```
 Drops the test database
 
+
 ## Creating a user in the db
 
 * Create user
@@ -211,6 +214,8 @@ db.createUser( {
   roles: [ "readWrite", "dbAdmin" ]
 });
 ```
+
+# Mongo Collections
 
 ## Creating a collection in the current db
 
@@ -237,6 +242,49 @@ show collections
 ```
 db.customer.drop()
 ```
+
+# Mongo Documents
+
+One of the **unique characteristics** of **documents** as compared to **tables/rows** in a relational database, is that each document defines its own **schema**.  One document may have a nested **address subdocument** that contains a certain set of fields, while another document may have a nested **address subdocument** with a completely different set of fields, or perhaps **no address subdocument** at all.
+
+## Document \_id
+
+* **\_id** -- **every Mongo document must have an \_id field**.  
+* If you don't provide one it will be **automatically generated** for you.  
+* It **must be unique**.  
+* The **underscore must be specified** when assigning your own **\_ids**.  
+* Requiring a **document** to have an **\_id** is the only **schema rule** that exists for Mongo.  
+* The **\_id** field can be **any type except an array**.
+
+### ObjectId()
+
+The **auto generated ObjectId()** has several **unique properties**:
+
+* You can **generated** an **\_id** by typing **ObjectId** in the **Mongo shell**.
+
+```
+> ObjectId()
+ObjectId("5bd8cd4a7745c0207c490465")
+```
+
+* It contains a **unique timestamp** within it that you can get with the **getTimestamp() method**, which means you don't have to store a separate **creation time** in your document, since you inherently have one in the **ObjectId()**.
+
+```
+> ObjectId().getTimestamp()
+ISODate("2018-10-30T21:32:47Z")
+```
+
+* Because the **ObjectId()** contains a **timestamp** it has a natural **sort order** so that by default documents are **sorted in the order they were added**.
+
+## Saving a document
+
+There are two ways you can **save a document**, either by using the **save()** method, or by using the **insert()** method.  This is an example of the **save()** method:
+
+```
+db.simpledoc.save({name: "Bill", age: 50})
+```
+
+One **downside** of using **save()** rather than **insert()** is that if you are using your own **\_ids** and you save two different documents with the **same \_id**, your second save will **overwrite** the first.  Whereas the **insert()** method will generate an **error** if you try to do this.
 
 ## Inserting documents
 

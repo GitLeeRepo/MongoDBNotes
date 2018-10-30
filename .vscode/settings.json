@@ -12,7 +12,10 @@
         "mycustomer",
         "mydb",
         "myscript",
+        "norc",
         "printjson",
-        "repos"
+        "repos",
+        "schemaless",
+        "simpledoc"
     ]
 }
