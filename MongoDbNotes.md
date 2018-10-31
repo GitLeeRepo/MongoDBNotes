@@ -20,6 +20,12 @@ Notes on the MongoDB database.
 
 ## My Other Notes
 
+### Notes in this repository
+
+* [ArrayNotesAndDemos](https://github.com/GitLeeRepo/MongoDBNotes/blob/master/ArrayNotesAndDemos.md#overview)
+
+### Notes in other repositories
+
 * [DockerNotes](https://github.com/GitLeeRepo/DockerNotes/blob/master/DockerNotes.md#overview)
 * [MySQLGeneralNotes](https://github.com/GitLeeRepo/MySQLNotes/blob/master/MySQLGeneralNotes.md#overview)
 * [UbuntuNotes](https://github.com/GitLeeRepo/UbuntuNotes/blob/master/UbuntuNotes.md#overview)
@@ -437,6 +443,12 @@ db.customer.remove( { first_name: "Mary" }, {justOne:true})
 ```
 db.customer.remove({})
 ```
+
+# Arrays in Documents
+
+Refer to:
+
+* [ArrayNotesAndDemos](https://github.com/GitLeeRepo/MongoDBNotes/blob/master/ArrayNotesAndDemos.md#overview) -- contains more in depth coverage of arrays.
 
 ## Adding Array fields or adding to an existing array
 
