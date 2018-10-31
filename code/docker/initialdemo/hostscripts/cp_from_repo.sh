@@ -1,16 +1,16 @@
 #/bin/bash
 
 # offer to exclude these files since they may be host dependent
-read -p "Exclude *.yml and run*.shl files from copy (Y/n): " doit
+read -p "Exclude *.yml and run*.shl files from copy (Y/n): " doexclude
 
-if [ -z "$doit" ]
+if [ -z "$doexclude" ]
 then
-    doit="Y"
+    doexclude="Y"
 fi
 
-doit=${doit^^} # toupper
+doexclude=${doexclude^^} # toupper
 
-echo $doit
+echo $doexclude
 
 # Offer to do a dry run to see what the results would be
 read -p "Perform dry run (Y/n): " dodryrun
@@ -28,14 +28,14 @@ echo $dodryrun
 
 if [ $dodryrun == "Y" ] ||  [ $dodryrun == "YES" ]
 then
-    if [ $doit == "Y" ] ||  [ $doit == "YES" ]
+    if [ $doexclude == "Y" ] ||  [ $doexclude == "YES" ]
     then
         rsync --dry-run --exclude=*.yml --exclude=run*.sh  -arvv ~/source/repos/MongoDBNotes/code/docker/initialdemo/  ~/source/docker/mongo/initialdemo/
     else
-        rsync --dry-run --exclude=*.yml --exclude=run*.sh  -arvv ~/source/repos/MongoDBNotes/code/docker/initialdemo/  ~/source/docker/mongo/initialdemo/
+        rsync --dry-run  -arvv ~/source/repos/MongoDBNotes/code/docker/initialdemo/  ~/source/docker/mongo/initialdemo/
     fi
 else
-    if [ $doit == "Y" ] ||  [ $doit == "YES" ]
+    if [ $doexclude == "Y" ] ||  [ $doexclude == "YES" ]
     then
         rsync --exclude=*.yml --exclude=run*.sh  -arvv ~/source/repos/MongoDBNotes/code/docker/initialdemo/  ~/source/docker/mongo/initialdemo/
     else
