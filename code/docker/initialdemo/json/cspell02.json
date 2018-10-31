@@ -1,0 +1,68 @@
+{
+    "terminal_integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+    "window_menuBarVisibility": "visible",
+    "cSpell_userWords": [
+        "CFLAGS",
+        "Executables",
+        "LDLIBS",
+        "LOADLIBES",
+        "Makefiles",
+        "Traversy",
+        "clouddrive",
+        "decompiled",
+        "fgets",
+        "fprintf",
+        "fputs",
+        "getc",
+        "getchar",
+        "malloc",
+        "mathlib",
+        "objdump",
+        "printf",
+        "ps",
+        "recompiles",
+        "remoting",
+        "scanf",
+        "sprintf",
+        "strcat",
+        "strchr",
+        "strcmp",
+        "strcpy",
+        "strlen",
+        "strncmp",
+        "strncpy",
+        "strstr",
+        "struct",
+        "subnet",
+        "tutorialspoint",
+        "whitespaces",
+        "winrm"
+    ],
+    "python.pythonPath": "D:\\Users\\traek\\Miniconda3\\python.exe",
+    "window.titleBarStyle": "custom",
+    "r.rterm.windows": "D:\\Program Files\\R\\R-3.5.1\\bin\\x64\\R.exe",
+    "mssql.connections": [
+        {
+            "server": "PREDATORG3-571\\DEV",
+            "database": "",
+            "authenticationType": "Integrated",
+            "profileName": "PREDATORG3-571\\DEV Default Database Connect",
+            "password": ""
+        },
+        {
+            "server": "PREDATORG3-571\\SQLEXPRESS",
+            "database": "",
+            "authenticationType": "Integrated",
+            "profileName": "PREDATORG3-571\\SQLEXPRESS Default Database",
+            "password": ""
+        }
+    ],
+    "azure.resourceFilter": [
+        "6f398f26-6665-40c1-8ffa-486af451f628/d0563004-89ba-413f-9a35-cc65eafad625"
+    ],
+    "files.eol": "\n",
+    "cSpell.language": "en,en-US",
+    "window.zoomLevel": 0,
+    "cSpell.diagnosticLevel": "Error"
+}
+
