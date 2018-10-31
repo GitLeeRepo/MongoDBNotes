@@ -5,6 +5,7 @@
         "directoryperdb",
         "eval",
         "homedrive",
+        "instock",
         "logappend",
         "logpath",
         "mongoimport",
